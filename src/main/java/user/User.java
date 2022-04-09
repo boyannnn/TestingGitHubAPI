@@ -1,38 +1,44 @@
 package user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    @JsonProperty("login")
+    @JsonProperty("id")
+    private Long id;
+
+    @JsonProperty("name")
     private String name;
 
-    @JsonProperty("public_repos")
-    private int publicRepos;
+    @JsonProperty("email")
+    private String email;
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty("bio")
+    private String bio;
 
-    public void setName(String name) {
+    @JsonProperty("twitter_username")
+    private String twitterUsername;
+
+    public User(Long id, String name, String email, String bio, String twitterUsername) {
+        this.id = id;
         this.name = name;
-    }
-
-    public int getPublicRepos() {
-        return publicRepos;
-    }
-
-    public void setPublicRepos(int publicRepos) {
-        this.publicRepos = publicRepos;
+        this.email = email;
+        this.bio = bio;
+        this.twitterUsername = twitterUsername;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", publicRepos=" + publicRepos +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", bio='" + bio + '\'' +
+                ", twitterUsername='" + twitterUsername + '\'' +
                 '}';
     }
 }
